@@ -1,23 +1,41 @@
+import { useState } from "react";
 import Card from "../Components/Card";
 import Loader from "../Components/Loader";
 import { useProducts } from "../Context/ProductsContext";
+import { FaSearch } from "react-icons/fa";
 function ProductsPage() {
   const products = useProducts();
-  console.log(products);
+  const [search, setSeach] = useState("");
+  const serachHandler = () =>{
+    
+  }
   return (
-    <div className="w-full pt-5 grid grid-cols-12 container mx-auto">
-      <div className="col-span-10">
-        <div className="grid grid-cols-12 gap-4">
-          <div className="col-span-12">{!products.length && <Loader />}</div>
-          {products.map((p) => (
-            <div className="col-span-4  max-w-[300px] " key={p.id}>
-              <Card data={p} />
-            </div>
-          ))}
-        </div>
+    <>
+      <div>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={search}
+          onChange={(e) => setSeach(e.target.value.toLowerCase().trim())}
+        />
+        <button onClick={serachHandler}>
+          <FaSearch />
+        </button>
       </div>
-      <div className="col-span-2">sidebar</div>
-    </div>
+      <div className="w-full pt-5 grid grid-cols-12 container mx-auto">
+        <div className="col-span-10">
+          <div className="grid grid-cols-12 gap-4">
+            <div className="col-span-12">{!products.length && <Loader />}</div>
+            {products.map((p) => (
+              <div className="col-span-4  max-w-[300px] " key={p.id}>
+                <Card data={p} />
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="col-span-2">sidebar</div>
+      </div>
+    </>
   );
 }
 
