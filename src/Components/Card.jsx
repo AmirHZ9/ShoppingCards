@@ -5,7 +5,7 @@ import { TbShoppingCartCopy } from "react-icons/tb";
 import { shortenText } from "../helper/helper";
 function Card({ data }) {
   const { id, title, image, price } = data;
-  console.log(data);
+
   return (
     <div className="rounded-xl p-5 bg-white border-2 border-border border-dashed">
       <img src={image} alt={title} className="mx-auto h-40" />
