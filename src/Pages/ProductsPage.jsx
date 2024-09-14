@@ -1,59 +1,65 @@
 import { useEffect, useState } from "react";
 import Card from "../Components/Card";
 import Loader from "../Components/Loader";
-import { useProducts } from "../Context/ProductsContext";
+
 import { FaSearch } from "react-icons/fa";
 import { FaListUl } from "react-icons/fa";
+import { useProducts } from "../Context/ProductsContext";
 import {
   createQueryObject,
   filterProducts,
+  getInitialQuery,
   searchProducts,
 } from "../helper/helper";
 import { useSearchParams } from "react-router-dom";
+
 function ProductsPage() {
   const products = useProducts();
-  const [displayed, setDisplayed] = useState([]);
-  const [search, setSeach] = useState("");
+  const [search, setSearch] = useState("");
+  const [display, setDisplay] = useState([]);
   const [query, setQuery] = useState({});
   const [searchParams, setSearchParams] = useSearchParams();
-  const serachHandler = () => {
+  const searchHandler = () => {
     setQuery((query) => createQueryObject(query, { search }));
   };
-  const categoryHandler = (e) => {
-    const { tagName } = e.target;
-    const category = e.target.innerText.toLowerCase();
+  const categoryHandler = (event) => {
+    const { tagName } = event.target;
+    const category = event.target.innerText.toLowerCase();
     setQuery((query) => createQueryObject(query, { category }));
-    if (tagName !== "LI") return;
+
+    if (tagName == !"Li") return;
   };
-
   useEffect(() => {
-    setDisplayed(products);
+    setDisplay(products);
+    getInitialQuery(searchParams, setQuery);
+    setSearch(searchParams.get('search'))
   }, [products]);
-
+  
   useEffect(() => {
     setSearchParams(query);
-    let finalProduct = searchProducts(products, query.search);
-    finalProduct = filterProducts(finalProduct, query.category);
-    setDisplayed(finalProduct);
+    let filteredProducts = searchProducts(products, query.search);
+    filteredProducts = filterProducts(filteredProducts, query.category);
+    setDisplay(filteredProducts);
+    console.log(query);
   }, [query]);
   return (
     <>
       <div>
         <input
           type="text"
-          placeholder="Search..."
           value={search}
-          onChange={(e) => setSeach(e.target.value.toLowerCase().trim())}
+          placeholder="search . . ."
+          onChange={(e) => setSearch(e.target.value.toLowerCase().trim())}
         />
-        <button onClick={serachHandler}>
+        <button onClick={searchHandler}>
           <FaSearch />
         </button>
       </div>
       <div className="w-full pt-5 grid grid-cols-12 gap-4 container mx-auto">
         <div className="col-span-10">
           <div className="grid grid-cols-12 gap-4">
-            <div className="col-span-12">{!displayed.length && <Loader />}</div>
-            {displayed.map((p) => (
+            <div className="col-span-12">{!display.length && <Loader />}</div>
+            {display.map((p) => (
               <div className="col-span-4  max-w-[300px] " key={p.id}>
                 <Card data={p} />
               </div>

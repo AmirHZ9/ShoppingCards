@@ -4,30 +4,41 @@ const shortenText = (text) => {
 
 const searchProducts = (products, search) => {
   if (!search) return products;
-  const searchedProducts = products.filter((p) =>
-    p.title.toLowerCase().includes(search)
+  const filteredDisplay = products.filter((i) =>
+    i.title.toLowerCase().includes(search)
   );
-  return searchedProducts;
+  return filteredDisplay;
 };
 
 const filterProducts = (products, category) => {
   if (!category) return products;
-  const filteredProducts = products.filter((p) => p.category === category);
+  if (category == "all") return products;
+
+  const filteredProducts = products.filter((i) => i.category == category);
   return filteredProducts;
 };
 
-const createQueryObject = (currentQuery, newQuery) => {
-  if (newQuery.category == "all") {
+const createQueryObject = (currentQuery, newQeury) => {
+  if (newQeury.category == "all") {
     const { category, ...rest } = currentQuery;
     return rest;
   }
-  if (newQuery.search == "") {
+  if (newQeury.search == "") {
     const { search, ...rest } = currentQuery;
     return rest;
   }
   return {
     ...currentQuery,
-    ...newQuery,
+    ...newQeury,
   };
 };
-export { shortenText, searchProducts, filterProducts, createQueryObject };
+
+const getInitialQuery = (searchParams,setQuery) =>{
+  const query ={}
+  const category = searchParams.get('category')
+  const search = searchParams.get('search')
+  if(category) query.category = category
+  if(search) query.search = search
+   setQuery(query)
+}
+export { shortenText, searchProducts, filterProducts,createQueryObject ,getInitialQuery};
