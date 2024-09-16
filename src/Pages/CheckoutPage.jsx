@@ -2,7 +2,7 @@ import React from 'react'
 
 function CheckoutPage() {
   return (
-    <div>CheckoutPage</div>
+    <div className='container mx-auto px-0'>CheckoutPage</div>
   )
 }
 

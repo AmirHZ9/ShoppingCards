@@ -9,7 +9,7 @@ function Layout({ children }) {
   return (
     <div>
       <header className="container mx-auto bg-base mb-5 p-3 rounded-lg text-white font-semibold flex justify-between items-center">
-        <p>ShoppingCard</p>
+        <Link to="/products">ShoppingCard</Link>
         <div className="relative">
           <Link to="/checkout">
             <span className="bg-black w-4 h-4 absolute end-[-9px] top-[-9px] flex justify-center items-center text-[8px]  rounded-full">{state.itemsCounter}</span>
