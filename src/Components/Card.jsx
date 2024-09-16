@@ -2,10 +2,16 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { RiListCheck2 } from "react-icons/ri";
 import { TbShoppingCartCopy } from "react-icons/tb";
-import { shortenText } from "../helper/helper";
+import { productQuantity, shortenText } from "../helper/helper";
+import { useCart } from "../Context/CartContext";
 function Card({ data }) {
   const { id, title, image, price } = data;
-
+  const [state, dispatch] = useCart();
+  // console.log(state)
+  const quantity = productQuantity(state, id);
+  const clickhandler = (type) => {
+    dispatch({ type, payload: data });
+  };
   return (
     <div className="rounded-xl p-5 bg-white border-2 border-border border-dashed">
       <img src={image} alt={title} className="mx-auto h-40" />
@@ -16,11 +22,42 @@ function Card({ data }) {
       <p className="text-text mt-2 font-semibold">{price}</p>
       <div className="flex mt-4 justify-between items-center w-full">
         <Link to={`/products/${id}`}>
-          <RiListCheck2 size={20} className="text-base"/>
+          <RiListCheck2 size={20} className="text-base" />
         </Link>
-        <button className="p-1 bg-base rounded-md">
-          <TbShoppingCartCopy size={20} className="text-white  "/>
-        </button>
+        {quantity == 1 && (
+          <button
+            className="p-1 bg-base rounded-md"
+            onClick={() => clickhandler("remove")}
+          >
+            r
+          </button>
+        )}
+          {quantity > 1 && (
+            <button
+              className="p-1 bg-base rounded-md"
+              onClick={() => clickhandler("decrease")}
+            >
+              -
+            </button>
+          )}
+
+          { quantity == 0 ? "" : quantity}
+        {quantity == 0 && (
+          <button
+            className="p-1 bg-base rounded-md"
+            onClick={() => clickhandler("add-item")}
+          >
+            <TbShoppingCartCopy size={20} className="text-white  " />
+          </button>
+        )}
+        {quantity > 0 && (
+          <button
+            className="p-1 bg-base rounded-md"
+            onClick={() => clickhandler("increase")}
+          >
+            +
+          </button>
+        )}
       </div>
     </div>
   );

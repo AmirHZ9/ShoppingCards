@@ -34,10 +34,9 @@ function ProductsPage() {
     let filteredProducts = searchProducts(products, query.search);
     filteredProducts = filterProducts(filteredProducts, query.category);
     setDisplay(filteredProducts);
-    console.log(query);
   }, [query]);
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto px-0">
       <Search
         search={search}
         setSearch={setSearch}

@@ -16,7 +16,7 @@ function Sidebar({query,setQuery}) {
             <p>Categories</p>
           </div>
           <ul onClick={categoryHandler}>
-          {categories.map(item => <li key={item.id} className={item.type.toLocaleLowerCase() == query.category ? "bg-base p-3" : null}>{item.type}</li>)}
+          {categories.map(item => <li key={item.id} className={item.type.toLocaleLowerCase() == query.category ? "bg-base p-3" :null}>{item.type}</li>)}
           </ul>
     </div>
   )

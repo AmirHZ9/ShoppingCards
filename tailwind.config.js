@@ -23,7 +23,7 @@ module.exports = {
         main:"#f9f9f9",
         text:"#666",
         border:"#e2e2e2",
-
+        black:"#000",
     },
     fontFamily: {
    
