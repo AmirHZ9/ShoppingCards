@@ -42,12 +42,12 @@ function ProductsPage() {
         setSearch={setSearch}
         searchHandler={searchHandler}
       />
-      <div className="w-full pt-5 grid grid-cols-12 gap-4  ">
+      <div className="w-full pt-5 grid grid-cols-12  ">
         <div className="col-span-10">
-          <div className="grid grid-cols-12 gap-4">
+          <div className="grid grid-cols-12 ">
             <div className="col-span-12">{!display.length && <Loader />}</div>
             {display.map((p) => (
-              <div className="col-span-4  max-w-[300px] " key={p.id}>
+              <div className="col-span-4  max-w-[300px] mb-5" key={p.id}>
                 <Card data={p} />
               </div>
             ))}

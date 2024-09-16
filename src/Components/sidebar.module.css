@@ -1,0 +1,16 @@
+.notSelectedCategory{
+    padding: 5px;
+    cursor: pointer;
+    transition: .3s;
+}
+.notSelectedCategory:hover{
+    color: #fe5d42;
+}
+.selectedCategory{
+    background:#fe5d42;
+    color: white;
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 8px;
+
+}
