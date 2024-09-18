@@ -27,15 +27,14 @@ function Card({ data }) {
           <RiListCheck2 size={20} className="text-base " />
         </Link>
         <div className="flex justify-between items-center">
-           {quantity == 1 && (
-          <button
-            className=" bg-base rounded-md  text-white w-6 h-6 flex justify-center items-center mr-2"
-            onClick={() => clickhandler("remove")}
-          >
-            <FaRegTrashAlt />
-
-          </button>
-        )}
+          {quantity == 1 && (
+            <button
+              className=" bg-base rounded-md  text-white w-6 h-6 flex justify-center items-center mr-2"
+              onClick={() => clickhandler("remove")}
+            >
+              <FaRegTrashAlt />
+            </button>
+          )}
           {quantity > 1 && (
             <button
               className=" bg-base rounded-md  text-white w-6 h-6 flex justify-center items-center mr-2"
@@ -45,25 +44,24 @@ function Card({ data }) {
             </button>
           )}
 
-          { quantity == 0 ? "" : quantity}
-        {quantity == 0 && (
-          <button
-            className=" bg-base rounded-md w-6 h-6 flex justify-center items-center"
-            onClick={() => clickhandler("add-item")}
-          >
-            <TbShoppingCartCopy size={20} className="text-white  " />
-          </button>
-        )}
-        {quantity > 0 && (
-          <button
-            className=" bg-base rounded-md text-white w-6 h-6 flex justify-center items-center ml-2"
-            onClick={() => clickhandler("increase")}
-          >
-            +
-          </button>
-        )}
+          {quantity == 0 ? "" : quantity}
+          {quantity == 0 && (
+            <button
+              className=" bg-base rounded-md w-6 h-6 flex justify-center items-center"
+              onClick={() => clickhandler("add-item")}
+            >
+              <TbShoppingCartCopy size={20} className="text-white  " />
+            </button>
+          )}
+          {quantity > 0 && (
+            <button
+              className=" bg-base rounded-md text-white w-6 h-6 flex justify-center items-center ml-2"
+              onClick={() => clickhandler("increase")}
+            >
+              +
+            </button>
+          )}
         </div>
-       
       </div>
     </div>
   );

@@ -5,7 +5,6 @@ import { RiShoppingCart2Line } from "react-icons/ri";
 
 function Layout({ children }) {
   const [state] = useCart();
-  console.log(state);
   return (
     <div>
       <header className="container mx-auto bg-base mb-5 p-3 rounded-lg text-white font-semibold flex justify-between items-center">

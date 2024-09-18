@@ -7,7 +7,7 @@ function BasketSidebar({ data, dispatch }) {
   const { checkout, total, itemsCounter } = data;
   if (data.selectedItems.length == 0) return <h1>Basket is empty!</h1>;
   return (
-    <div className="border-base border-2 border-dashed rounded-2xl p-5 mr-5">
+    <div className="border-base border-2 border-dashed rounded-2xl p-5 tablet:mr-5">
       <div className="flex justify-start mb-5 items-center">
         <p className="text-base mr-2 font-semibold flex items-center">
           {" "}

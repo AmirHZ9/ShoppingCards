@@ -15,11 +15,11 @@ function DetailsPage() {
   console.log(productsDetails);
   if (!productsDetails) return <Loader />;
   return (
-    <div className="container mx-auto px-0 grid grid-cols-12 ">
-      <div className="col-span-2 border-2 p-5 rounded-3xl border-base border-dashed flex items-center bg-white">
-        <img src={productsDetails.image} alt="" className="" />
+    <div className="container mx-auto  mobilePro:flex justify-between items-start ">
+      <div className=" max-w-34 border-2 p-5 mb-5 rounded-3xl border-base border-dashed flex items-center bg-white">
+        <img src={productsDetails.image} alt="" className="h-full" />
       </div>
-      <div className="col-span-10 ml-5 border-dashed border-2 border-border p-5 rounded-3xl">
+      <div className=" mobilePro:ml-5 border-dashed border-2 border-border p-5 rounded-3xl">
         <h3 className="text-base font-semibold mb-5">
           {productsDetails.title}
         </h3>
@@ -31,15 +31,15 @@ function DetailsPage() {
           </span>
           {productsDetails.category}
         </p>
-        <div className="flex justify-between items-center text-white ">
+        <div className="mobile:flex justify-between items-center text-white ">
           <span className="text-black font-semibold flex items-center">
             <span className="mr-2 text-base">
               <IoIosPricetag />
             </span>
             {productsDetails.price} $
           </span>
-          <span className="flex items-center bg-base p-2 rounded-xl">
-            <Link to="/products" className="flex items-center">
+          <span className="flex items-center justify-center bg-base p-2 rounded-xl mt-3">
+            <Link to="/products" className="flex items-center ">
               <span className="mr-2">
                 <FaArrowLeft />
               </span>

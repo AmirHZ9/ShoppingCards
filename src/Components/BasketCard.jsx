@@ -6,9 +6,9 @@ import { FaRegTrashAlt } from "react-icons/fa";
 function BasketCard( {data,clickhandler}) {
     const {image,title,quantity} = data
   return (
-    <div className='flex justify-between items-center bg-white rounded-xl border-2 border-dashed border-border p-5 mb-5 '>
+    <div className='flex flex-col mobile:flex-row justify-center mobile:justify-between items-center bg-white rounded-xl border-2 border-dashed border-border p-5 mb-5 '>
         <img src={image} alt="" className='w-20'/>
-        <h1 className='font-semibold'>{shortenText(title)}</h1>
+        <h1 className='font-semibold my-3 mobile:my-0'>{shortenText(title)}</h1>
 
         <div className='flex justify-center items-center'>
             {
