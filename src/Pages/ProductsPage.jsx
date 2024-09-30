@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import Card from "../Components/Card";
 import Loader from "../Components/Loader";
-
-import { useProducts } from "../Context/ProductsContext";
 import {
   createQueryObject,
   filterProducts,
@@ -12,13 +10,20 @@ import {
 import { useSearchParams } from "react-router-dom";
 import Search from "../Components/Search";
 import Sidebar from "../Components/Sidebar";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchProducts } from "../features/product/productSlice";
 
 function ProductsPage() {
-  const products = useProducts();
+  const {products,loading} = useSelector((state) => state.products);
+  const dispatch = useDispatch();
   const [search, setSearch] = useState("");
   const [display, setDisplay] = useState([]);
   const [query, setQuery] = useState({});
   const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
 
   useEffect(() => {
     setDisplay(products);
@@ -34,17 +39,16 @@ function ProductsPage() {
   }, [query]);
   return (
     <div className="container mx-auto mobile:px-0">
-      <Search
-        search={search}
-        setSearch={setSearch}
-        setQuery={setQuery}
-      />
+      <Search search={search} setSearch={setSearch} setQuery={setQuery} />
       <div className="w-full pt-5 grid grid-cols-12">
         <div className="col-span-12 tabletPro:col-span-9 order-2">
           <div className="grid grid-cols-12 gap-5 ">
-            <div className="col-span-12">{!display.length && <Loader />}</div>
+            <div className="col-span-12">{loading && <Loader />}</div>
             {display.map((p) => (
-              <div className="col-span-12 mobile:col-span-6 desktop:col-span-4 gap-2   " key={p.id}>
+              <div
+                className="col-span-12 mobile:col-span-6 desktop:col-span-4 gap-2   "
+                key={p.id}
+              >
                 <Card data={p} />
               </div>
             ))}

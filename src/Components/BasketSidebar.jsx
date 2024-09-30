@@ -2,9 +2,9 @@ import React from "react";
 import { FaHashtag } from "react-icons/fa6";
 import { FaClipboardCheck } from "react-icons/fa6";
 import { MdAccessTime } from "react-icons/md";
-
+import { checkout as checkoutSidebar } from "../features/Cart/cartSlice";
 function BasketSidebar({ data, dispatch }) {
-  const { checkout, total, itemsCounter } = data;
+  const {  total, itemsCounter } = data;
   if (data.selectedItems.length == 0) return <h1>Basket is empty!</h1>;
   return (
     <div className="border-base border-2 border-dashed rounded-2xl p-5 tablet:mr-5">
@@ -38,7 +38,7 @@ function BasketSidebar({ data, dispatch }) {
       </div>
 
       <button
-        onClick={() => dispatch({ type: "checkout" })}
+        onClick={() => dispatch(checkoutSidebar())}
         className="bg-base rounded-lg text-white  w-full"
       >
         Checkout

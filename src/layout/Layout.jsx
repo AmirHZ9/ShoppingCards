@@ -1,10 +1,10 @@
 import React from "react";
-import { useCart } from "../Context/CartContext";
 import { Link } from "react-router-dom";
 import { RiShoppingCart2Line } from "react-icons/ri";
+import { useSelector } from "react-redux";
 
 function Layout({ children }) {
-  const [state] = useCart();
+  const state = useSelector(store => store.cardReducer)
   return (
     <div>
       <header className="container mx-auto bg-base mb-5 p-3 rounded-lg text-white font-semibold flex justify-between items-center">

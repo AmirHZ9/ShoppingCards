@@ -3,14 +3,14 @@ import ProductsPage from "./Pages/ProductsPage";
 import DetailsPage from "./Pages/DetailsPage";
 import CheckoutPage from "./Pages/CheckoutPage";
 import PageNotFound from "./Pages/404";
-import ProductsProvider from "./Context/ProductsContext";
-import CartContextProvider from "./Context/CartContext";
+// import ProductsProvider from "./Context/ProductsContext";
+// import CartContextProvider from "./Context/CartContext";
 import Layout from "./layout/Layout";
 function App() {
   return (
-    <div className="bg-main py-5">
-      <ProductsProvider>
-        <CartContextProvider>
+    <div className="bg-main py-5 min-h-screen">
+      {/* <ProductsProvider> */}
+        {/* <CartContextProvider> */}
           <Layout>
             <Routes>
               <Route index element={<Navigate to="/products" replace />} />
@@ -20,8 +20,8 @@ function App() {
               <Route path="/*" element={<PageNotFound />} />
             </Routes>
           </Layout>
-        </CartContextProvider>
-      </ProductsProvider>
+        {/* </CartContextProvider> */}
+      {/* </ProductsProvider> */}
     </div>
   );
 }

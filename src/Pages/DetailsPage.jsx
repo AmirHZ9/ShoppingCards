@@ -1,18 +1,23 @@
 import { Link, useParams } from "react-router-dom";
 
-
 import { TbCategory } from "react-icons/tb";
 import { IoIosPricetag } from "react-icons/io";
 import { FaArrowLeft } from "react-icons/fa6";
 
 import Loader from "../Components/Loader";
-import { useProductsDetails } from "../Context/ProductsContext";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { fetchProducts } from "../features/product/productSlice";
 
 function DetailsPage() {
+  const dispatch = useDispatch()
   const { id } = useParams();
-  console.log(id);
-  const productsDetails = useProductsDetails(+id);
-  console.log(productsDetails);
+  const productsDetails = useSelector((state) =>
+    state.products.products.find((item) => item.id == id)
+  );
+useEffect(()=>{
+  dispatch(fetchProducts())
+},[])
   if (!productsDetails) return <Loader />;
   return (
     <div className="container mx-auto  mobilePro:flex justify-between items-start ">
